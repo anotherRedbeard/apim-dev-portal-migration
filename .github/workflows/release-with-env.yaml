@@ -18,8 +18,8 @@ jobs:
       - name: Set default value
         id: defaultname
         run: |
-          USER_INPUT=${{ github.event.inputs.name }}
-          echo "output_path=${OUTPUT_FOLDER_PATH:-"Octocat"}" >> "$GITHUB_ENV"
+          USER_INPUT=${{ inputs.OUTPUT_FOLDER_PATH }}
+          echo "output_path=${USER_INPUT:-"Octocat"}" >> "$GITHUB_ENV"
 
       - name: Do something with it
         run: |
