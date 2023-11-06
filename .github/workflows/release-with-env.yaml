@@ -54,7 +54,7 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           RESOURCE_GROUP_NAME: ${{ vars.RESOURCE_GROUP_NAME }}
           APIM_INSTANCE_NAME: ${{ vars.APIM_INSTANCE_NAME }}
-          OUTPUT_FOLDER_PATH: ${{ vars.output_path }}
+          OUTPUT_FOLDER_PATH: ${{ env.output_path }}
         run: |     
            node ./scripts.v3/generate --subscriptionId  "${{ env.AZURE_SUBSCRIPTION_ID }}" --resourceGroupName "${{ env.RESOURCE_GROUP_NAME }}" --serviceName "${{ env.APIM_INSTANCE_NAME }}" --tenantId "${{ env.AZURE_TENANT_ID }}" --servicePrincipal "${{ env.AZURE_CLIENT_ID }}"  --servicePrincipalSecret "${{ env.AZURE_CLIENT_SECRET }}"  --folder "${{ GITHUB.WORKSPACE }}/${{ env.OUTPUT_FOLDER_PATH }}/snapshot"  
         shell: pwsh        
