@@ -18,12 +18,8 @@ jobs:
       - name: Set default value
         id: defaultname
         run: |
-          USER_INPUT=${{ inputs.OUTPUT_FOLDER_PATH }}
-          echo "output_path=${USER_INPUT:-"artifacts"}" >> "$GITHUB_ENV"
-
-      - name: Do something with it
-        run: |
-          echo "Name: $output_path"
+          USER_INPUT_OUTPUT_FOLDER_PATH=${{ inputs.OUTPUT_FOLDER_PATH }}
+          echo "output_path=${USER_INPUT_OUTPUT_FOLDER_PATH:-"artifacts"}" >> "$GITHUB_ENV"
 
       - uses: actions/checkout@v3
         with:

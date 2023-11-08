@@ -87,3 +87,4 @@
 
 4. Update the *release.yaml* to reflect the stages you want to deploy to. 
 
+5. By default the folder used to store the Developer Portal artifacts in this repo is `artifacts` as referenced in the [release-with-env.yaml file](.github/workflows/release-with-env.yaml#L22). If you would like to use a different folder name, you will need to update that file first.
