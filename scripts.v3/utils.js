@@ -484,15 +484,12 @@ class ImporterExporter {
             const contentItems = await this.getContentItems("url");
 
             console.log("Number of urls found in portal: " + contentItems.length);
-            console.log(" ReplacableUrls: " + replaceableUrls);
 
             for (const contentItem of contentItems) {
                 var count = 0;
                 console.log(" url found in portal: " + contentItem.properties.permalink);
-                console.log(" count : " + count);
 
                 for (const existingUrl of existingUrls) {
-                    console.log(" exiting url : " + existingUrl);
                     if (contentItem.properties.permalink == existingUrl) {
                         contentItem.properties.permalink = replaceableUrls[count];
                         console.log("updating URL content... for no. " + count + " link: " + contentItem.properties.permalink);
