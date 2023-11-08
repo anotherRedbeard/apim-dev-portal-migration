@@ -65,8 +65,8 @@ jobs:
           APIM_INSTANCE_NAME: ${{ vars.APIM_INSTANCE_NAME }}
         run: |     
           $jsonLeft = (Get-Content "existingUrls.json" -Raw) | ConvertFrom-Json
-          $existingUrls = $jsonLeft.uri | ForEach-Object { $_.Trim() }
+          $existingUrls = $jsonLeft.uri -replace ",\s*", "," # Remove spaces between items
           $jsonRight = (Get-Content "urls.${{ inputs.ENVIRONMENT }}.json" -Raw) | ConvertFrom-Json
-          $targetUrls = $jsonRight.uri | ForEach-Object { $_.Trim() }
+          $targetUrls = $jsonRight.uri -replace ",\s*", "," # Remove spaces between items
           node ./scripts.v3/updatecontenturl --destSubscriptionId  "${{ env.AZURE_SUBSCRIPTION_ID }}"  --destResourceGroupName "${{ env.RESOURCE_GROUP_NAME }}" --destServiceName "${{ env.APIM_INSTANCE_NAME }}" --destTenantId "${{ env.AZURE_TENANT_ID }}" --destServicePrincipal "${{ env.AZURE_CLIENT_ID }}"  --destSecret "${{ env.AZURE_CLIENT_SECRET }}" --existingEnvUrls $existingUrls --destEnvUrls $targetUrls
         shell: pwsh
